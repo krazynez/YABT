@@ -6,12 +6,9 @@ PSP_EBOOT_TITLE = YABT
 UNAME := $(shell uname)
 
 all:
-ifeq ($(UNAME), Linux)
-	WINEPREFIX="$(shell pwd)/prefix/" wine bin/prxEncrypter.exe $(TARGET).prx
-else
-	$(shell pwd)\bin\prxEncrypter $(TARGET).prx
-endif
-	pack-pbp $(EXTRA_TARGETS) PARAM.SFO icon0.png NULL NULL pic1.png NULL data.psp NULL
+	unpack-pbp $(EXTRA_TARGETS)
+	pack-pbp $(EXTRA_TARGETS) PARAM.SFO icon0.png NULL NULL pic1.png res/SND0.AT3 DATA.PSP NULL
+	./bin/psptools/pack_ms_game.py --vanity YABT EBOOT.PBP EBOOT.PBP
 
 
 
