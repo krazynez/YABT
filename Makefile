@@ -7,7 +7,7 @@ UNAME := $(shell uname)
 
 all:
 	unpack-pbp $(EXTRA_TARGETS)
-	pack-pbp $(EXTRA_TARGETS) PARAM.SFO icon0.png NULL NULL pic1.png res/SND0.AT3 DATA.PSP NULL
+	pack-pbp $(EXTRA_TARGETS) PARAM.SFO res/icon0.png NULL NULL res/pic1.png res/SND0.AT3 DATA.PSP NULL
 	./bin/psptools/pack_ms_game.py --vanity YABT EBOOT.PBP EBOOT.PBP
 
 
@@ -19,7 +19,7 @@ PSP_FW_VERSION = 660
 LIBS = -lpspctrl -lpspdebug
 
 
-release: $(TARGET).prx
+release: clean all $(TARGET).prx
 	@mkdir -p PSP/GAME/YABT/
 	@cp EBOOT.PBP PSP/GAME/YABT/
 	zip -r YABT.zip PSP/
